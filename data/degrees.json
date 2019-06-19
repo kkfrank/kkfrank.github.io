@@ -1,22 +1,8 @@
-{
-  "degrees":[
+[
     {
-        "School": "Dalian Neusoft University",
-        "Program": "Liberal Arts in Business Administration",
-        "Type": "BA",
-        "Year": "2013"
-    },
-    {
-        "School": "Dickinson State University",
-        "Program": "Liberal Arts in Business Administration",
-        "Type": "BA",
-        "Year": "2014"
-    },
-    {
-      "School": "Boston University",
-      "Program": "Computer Information Systems",
-      "Type": "MS",
-      "Year": "2019"
+        "school": "上海****",
+        "program": "电子信息工程",
+        "type": "本科",
+        "year": "2011 - 2015"
     }
-  ]
-}
+]

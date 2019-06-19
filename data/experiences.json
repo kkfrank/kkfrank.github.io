@@ -1,0 +1,20 @@
+[
+   {
+      "company":"Unity Software (Shanghai)",
+      "position":"前端开发",
+      "duties":[
+         "开发维护id.unity.com网站。",
+         "其他前端需求的实现。"
+      ],
+      "time":"2018.01 - 现在"
+   },
+   {
+      "company":"春秋航空",
+      "position":"前端开发",
+      "duties":[
+         "前端框架的选型、实现、推广。",
+         "其他前端需求的实现。"
+      ],
+      "time":"2015.07 - 2017.12"
+   }
+]
