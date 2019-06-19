@@ -304,6 +304,7 @@ a.mobile-menu-opener {
 .timeline {
     position: relative;
     float:left;
+    width: 100%;
 }
 .timeline:before {
     content:" ";
