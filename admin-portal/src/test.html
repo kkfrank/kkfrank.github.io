@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <label>normal:</label>
+        <input id="normal">
+    </div>
+    <div>
+        <label>debounce(防抖):</label>
+        <input id="debounce">
+    </div>
+    <div>
+        <label>throttle(节流):</label>
+        <input id="throttle">
+    </div>
+
+    <script>
+        var debounceFn = function (fn, delay) {
+            return function () {
+                var _args = arguments
+                var _this = this;
+                clearTimeout(debounceFn.timerId )
+                debounceFn.timerId = setTimeout(function () {
+                    fn.apple(_this, _args)
+                }, delay)
+            }
+        }
+
+        var throttleFn = function (fn, delay) {
+            var timerId, last=0;
+            return function (args) {
+                var now = +new Date();
+                if(now - last >= delay){
+                    last = now;
+                    fn(args)
+                }else{
+//                    clearTimeout(timerId)
+//                    timerId = setTimeout(function () {
+//                        last = now;
+//                        fn(args)
+//                    }, delay)
+                }
+            }
+        }
+
+        function ajax(content){
+            console.log('ajax request ' + content)
+        }
+
+        var normalInput = document.getElementById('normal')
+        var debounceInput = document.getElementById('debounce')
+        var throttleInput = document.getElementById('throttle')
+
+        normalInput.addEventListener('keyup',function (e) {
+            ajax(e.target.value)
+        })
+        var debounceAjaxFn = debounceFn(ajax, 900)
+        var throttleAjaxFn = throttleFn(ajax, 900)
+
+        debounceInput.addEventListener('keyup',function (e) {
+            //debounceAjaxFn(e.target.value)
+            debounceFn(ajax, 900)(e.target.value)
+        })
+
+        throttleInput.addEventListener('keyup',function (e) {
+            //debounceAjaxFn(e.target.value)
+            throttleAjaxFn(e.target.value)
+        })
+
+    </script>
+</body>
+</html>
