@@ -18,8 +18,9 @@ module.exports = {
         vendor: Object.keys(pkg.dependencies)
     },
     output: {
-        path: path.join(__dirname, 'build'),
-        publicPath: path.join(__dirname, 'build/'),
+        path: path.join(__dirname, 'build', 'assets'),
+        // publicPath: path.join(__dirname, 'build/'),
+        publicPath: './assets',
         filename: 'js/[name].[chunkhash:8].js'
     },
     resolve: {
@@ -84,9 +85,10 @@ module.exports = {
         // 删除build文件夹
         new CleanWebpackPlugin('./build'),
         // 加署名
-        new webpack.BannerPlugin("Copyright by luoziwo.cn"),
+        new webpack.BannerPlugin("Copyright by frank"),
         // html 模板插件
         new HtmlWebpackPlugin({
+            filename:'../index.html',
             template: __dirname + '/src/index.html',
             minify: {
                 removeComments: true,
