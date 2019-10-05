@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import connection from '../../api/http'
 import { BASE_URL } from '../../constants'
+import { createHashHistory } from 'history';
 import './Index.scss'
+
+const history = createHashHistory();
 
 export default class NavTop extends Component{
     constructor(props){
@@ -13,6 +16,11 @@ export default class NavTop extends Component{
     }
 
     componentDidMount(){
+        const user = JSON.parse(window.localStorage.getItem('current_user'));
+        if(!user){
+            history.push('/login');
+        }
+
         if(this.welcomeRef && this.logoutRef){
             this.welcomeRef.onmouseover =() => {
                 this.setState({
@@ -38,7 +46,8 @@ export default class NavTop extends Component{
         connection.post('/user/logout.do')
             .then(res=>{
                 window.localStorage.removeItem('current_user')
-                window.location.href = `${BASE_URL}login`
+                // window.location.href = `${BASE_URL}login`
+                history.push('/login');
             })
     }
 
@@ -46,7 +55,8 @@ export default class NavTop extends Component{
         const user = JSON.parse(window.localStorage.getItem('current_user'));
         const { isLogoutVisible } = this.state
         if(!user){
-            window.location.href = `${BASE_URL}login`
+            // window.location.href = `${BASE_URL}login`
+            history.push('/login');
             return <div></div>
         }
         return(

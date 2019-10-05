@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter,Switch, Route } from 'react-router-dom'
+import { BrowserRouter, HashRouter, Switch, Route } from 'react-router-dom'
 import asyncComponent from '../components/asyncComponent.jsx'
 import Layout from '../components/Layout/Index'
 
@@ -33,7 +33,7 @@ export default class RouteConfig extends Component {
         );
 
         return (
-                <BrowserRouter>
+                <HashRouter>
                     {/*<Switch>*/}
                         {/*<Route path="/login" component={Login}/>*/}
                         {/*<Route path="/" render={() => (*/}
@@ -48,7 +48,7 @@ export default class RouteConfig extends Component {
                         <Route path="/login" component={Login}/>
                         <Route path="/" render={() => MainLayout}/>
                     </Switch>
-                </BrowserRouter>
+                </HashRouter>
             );
     }
 }

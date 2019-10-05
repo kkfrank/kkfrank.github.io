@@ -2,6 +2,8 @@ import connection from '../api/http'
 import { BASE_URL } from '../constants'
 import { GET_PRODUCT_DETAIL_SUCCESS, SAVE_PRODUCT_DETAIL_SUCCESS, PRODUCT_DETAIL_CHANGE,CLEAR_PRODUCT_DETAIL } from '../action_type/product_detail'
 import { showLoading, hideLoading, setErrorMsg } from "./loading_error";
+import { createHashHistory } from 'history';
+const history = createHashHistory();
 
 export function getProductDetail(productId){
     return (dispatch, getState) => {
@@ -38,7 +40,6 @@ export function clearProductDetail(){
     }
 }
 
-
 export function saveProduct(product){
     return (dispatch, getState) => {
         dispatch(showLoading())
@@ -47,7 +48,8 @@ export function saveProduct(product){
                 dispatch({
                     type: SAVE_PRODUCT_DETAIL_SUCCESS,
                 })
-                window.location.href = `${BASE_URL}products`
+                // window.location.href = `${BASE_URL}products`
+                history.push('/products')
             })
             .catch(err=>{
                 dispatch(setErrorMsg(err.message))
