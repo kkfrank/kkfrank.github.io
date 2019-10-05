@@ -18,7 +18,7 @@ export default class NavTop extends Component{
     componentDidMount(){
         const user = JSON.parse(window.localStorage.getItem('current_user'));
         if(!user){
-            history.push('/login');
+            history.push('login');
         }
 
         if(this.welcomeRef && this.logoutRef){
@@ -47,7 +47,7 @@ export default class NavTop extends Component{
             .then(res=>{
                 window.localStorage.removeItem('current_user')
                 // window.location.href = `${BASE_URL}login`
-                history.push('/login');
+                history.push('login');
             })
     }
 
@@ -56,7 +56,7 @@ export default class NavTop extends Component{
         const { isLogoutVisible } = this.state
         if(!user){
             // window.location.href = `${BASE_URL}login`
-            history.push('/login');
+            history.push('login');
             return <div></div>
         }
         return(

@@ -16,7 +16,7 @@ const request = (method = 'GET', url, params = {}, data = {}) => {
             if(res.data.status === 10){
                window.localStorage.removeItem('current_user')
                // window.location.href = `${BASE_URL}login`
-               history.push('/login');
+               history.push('login');
             }else if(res.data.status === 0){
                 resolve(res.data)
             }else{
