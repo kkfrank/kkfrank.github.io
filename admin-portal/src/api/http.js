@@ -35,9 +35,15 @@ const request = (method = 'GET', url, params = {}, data = {}) => {
 
 const connection = {
     post(url, data, params){
+        if($NODE_ENV === 'production'){
+            url = 'http://admintest.happymmall.com' + url
+        }
         return request('POST', url, params, data)
     },
     get(url, params = {}){
+        if($NODE_ENV === 'production'){
+            url = 'http://admintest.happymmall.com' + url
+        }
         return request('GET', url, params)
     }
 }
