@@ -4,10 +4,6 @@
   "private": true,
   "dependencies": {
     "axios": "^0.19.0",
-    "babel-preset-stage-3": "^6.24.1",
-    "husky": "^3.0.2",
-    "lint-staged": "^9.2.1",
-    "prettier": "^1.18.2",
     "rc-pagination": "^1.20.5",
     "react": "^15.6.1",
     "react-cookie": "^4.0.1",
@@ -19,6 +15,10 @@
     "simditor": "^2.3.6"
   },
   "devDependencies": {
+    "babel-preset-stage-3": "^6.24.1",
+    "husky": "^3.0.2",
+    "lint-staged": "^9.2.1",
+    "prettier": "^1.18.2",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.26.3",
     "babel-eslint": "^7.2.3",
