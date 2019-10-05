@@ -20,7 +20,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, 'build', 'assets'),
         // publicPath: path.join(__dirname, 'build/'),
-        publicPath: './assets',
+        publicPath: './assets/',
         filename: 'js/[name].[chunkhash:8].js'
     },
     resolve: {
