@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import connection from '../../api/http'
+import { BASE_URL } from '../../constants'
 import './Index.scss'
 
 export default class NavTop extends Component{
@@ -12,23 +13,24 @@ export default class NavTop extends Component{
     }
 
     componentDidMount(){
-        this.welcomeRef.onmouseover =() => {
-            this.setState({
-                isLogoutVisible: true
-            })
-        }
-        this.welcomeRef.onmouseout = (ev) => {
-            if(!ev.relatedTarget || ev.relatedTarget && ev.relatedTarget.className.indexOf('logout')<0){
+        if(this.welcomeRef && this.logoutRef){
+            this.welcomeRef.onmouseover =() => {
+                this.setState({
+                    isLogoutVisible: true
+                })
+            }
+            this.welcomeRef.onmouseout = (ev) => {
+                if(!ev.relatedTarget || ev.relatedTarget && ev.relatedTarget.className.indexOf('logout')<0){
+                    this.setState({
+                        isLogoutVisible: false
+                    })
+                }
+            }
+            this.logoutRef.onmouseout = (ev)=> {
                 this.setState({
                     isLogoutVisible: false
                 })
             }
-        }
-
-        this.logoutRef.onmouseout = (ev)=> {
-            this.setState({
-                isLogoutVisible: false
-            })
         }
     }
 
@@ -36,7 +38,7 @@ export default class NavTop extends Component{
         connection.post('/user/logout.do')
             .then(res=>{
                 window.localStorage.removeItem('current_user')
-                window.location.href = '/login';
+                window.location.href = `${BASE_URL}login`
             })
     }
 
@@ -44,7 +46,7 @@ export default class NavTop extends Component{
         const user = JSON.parse(window.localStorage.getItem('current_user'));
         const { isLogoutVisible } = this.state
         if(!user){
-            window.location.href = '/login';
+            window.location.href = `${BASE_URL}login`
             return <div></div>
         }
         return(

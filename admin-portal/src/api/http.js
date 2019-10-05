@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { BASE_URL } from '../constants'
 
 const request = (method = 'GET', url, params = {}, data = {}) => {
     return new Promise((resolve, reject) => {
@@ -11,7 +12,7 @@ const request = (method = 'GET', url, params = {}, data = {}) => {
         }).then(res => {
             if(res.data.status === 10){
                window.localStorage.removeItem('current_user')
-               window.location.href = "/login"
+               window.location.href = `${BASE_URL}login`
             }else if(res.data.status === 0){
                 resolve(res.data)
             }else{

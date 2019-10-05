@@ -136,7 +136,22 @@ export default class Product extends Component {
                     <button onClick={()=>this.handleSearchFunc({ pageSize, pageNum: 1})} className="btn">查询</button>
                     <Link to="/products/new" className="btn mr10 right">添加商品</Link>
                 </div>
-                <Table tableHeaders={['ID','信息','价格','状态','操作']}>
+                <Table tableHeaders={[{
+                                name: 'ID',
+                                width:'15%'
+                            },{
+                                name: '信息',
+                                width:'30%'
+                            },{
+                                name: '价格',
+                                width:'15%'
+                            },{
+                                name: '状态',
+                                width: '20'
+                            },{
+                                name: '操作',
+                                width:'20%'
+                            }]}>
                     {productList.map(item=>(
                         <tr key={item.id}>
                             <td>{item.id}</td>

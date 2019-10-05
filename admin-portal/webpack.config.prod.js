@@ -104,9 +104,7 @@ module.exports = {
         }),
         /// 定义为生产环境，编译 React 时压缩到最小
         new webpack.DefinePlugin({
-            'process.env': {
-                'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-            }
+            '$NODE_ENV': JSON.stringify(process.env.NODE_ENV)
         }),
         // 可在业务 js 代码中使用 __DEV__ 判断是否是dev模式（dev模式下可以提示错误、测试报告等, production模式不提示）
         new webpack.DefinePlugin({

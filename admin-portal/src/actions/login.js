@@ -1,4 +1,5 @@
 import connection from '../api/http'
+import { BASE_URL } from '../constants'
 import { LOGIN_SUCCESS} from '../action_type/login'
 import { showLoading, hideLoading, setErrorMsg } from "./loading_error";
 
@@ -14,8 +15,8 @@ export function doLogin(username, password){
                     user: res.data
                 })
                 // dispatch(hideLoading());
-                window.location.href='/'
-
+                // window.location.href='/'
+                 window.location.href = `${BASE_URL}`
             })
             .catch(err=>{
                 dispatch(setErrorMsg(err.message))
