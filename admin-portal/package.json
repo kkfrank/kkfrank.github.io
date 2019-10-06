@@ -15,7 +15,6 @@
     "simditor": "^2.3.6"
   },
   "devDependencies": {
-    "babel-preset-stage-3": "^6.24.1",
     "husky": "^3.0.2",
     "lint-staged": "^9.2.1",
     "prettier": "^1.18.2",

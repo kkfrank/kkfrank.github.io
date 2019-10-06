@@ -51,7 +51,7 @@ module.exports = {
             },
             {
                 test: /\.(css|scss)$/,
-                exclude: /node_modules/,
+                // exclude: /node_modules/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
                     //resolve-url-loader may be chained before sass-loader if necessary
@@ -59,19 +59,19 @@ module.exports = {
                         {
                             loader: 'css-loader',
                             options: {
-                                sourceMap: true
+                                sourceMap: false
                             }
                         },
                         {
                             loader: 'postcss-loader',
                             options: {
-                                sourceMap: true
+                                sourceMap: false
                             }
                         },
                         {
                             loader: 'sass-loader',
                             options: {
-                                sourceMap: true
+                                sourceMap: false
                             }
                         }
                     ]
