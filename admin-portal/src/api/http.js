@@ -30,12 +30,19 @@ const request = (method = 'GET', url, params = {}, data = {}) => {
         });
     });
 };
-
+const corsUrl = 'https://cors-anywhere.herokuapp.com/'
+const apiUrl = 'http://admintest.happymmall.com'
 const connection = {
     post(url, data, params){
+        if($NODE_ENV === 'production'){
+            url = corsUrl + apiUrl + url
+        }
         return request('POST', url, params, data)
     },
     get(url, params = {}){
+        if($NODE_ENV === 'production'){
+            url = corsUrl + apiUrl + url
+        }
         return request('GET', url, params)
     }
 }
