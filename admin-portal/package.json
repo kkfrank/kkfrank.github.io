@@ -12,7 +12,7 @@
     "react-router-dom": "^4.1.2",
     "redux": "^3.7.2",
     "redux-thunk": "^2.3.0",
-    "simditor": "^2.3.6"
+    "simditor": "^2.3.28"
   },
   "devDependencies": {
     "husky": "^3.0.2",
