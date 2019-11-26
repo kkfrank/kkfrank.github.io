@@ -31,7 +31,7 @@ const request = (method = 'GET', url, params = {}, data = {}) => {
     });
 };
 // const corsUrl = 'https://cors-anywhere.herokuapp.com/'
-const corsUrl = 'http://crossorigin.me/'
+const corsUrl = 'https://crossorigin.me/'
 const apiUrl = 'http://admintest.happymmall.com'
 const connection = {
     post(url, data, params){
