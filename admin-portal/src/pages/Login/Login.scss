@@ -2,6 +2,17 @@
   width: 300px;
   margin: 200px auto 0 auto;
 
+  .notice{
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    max-width: 640px;
+    min-width: 300px;
+    padding: 20px 0;
+    color: #ff4d4f;
+    transform: translateX(-50%);
+  }
+
   h1{
     font-size: 20px;
     color: #1890ff;

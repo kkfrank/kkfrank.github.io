@@ -457,6 +457,10 @@ a.mobile-menu-opener {
 .no-float {
     float: none !important;
 }
+
+#experience{
+    margin-bottom: 50px;
+}
 /* education */
 
 

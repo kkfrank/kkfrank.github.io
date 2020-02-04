@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import connection from '../../api/http'
-import { BASE_URL } from '../../constants'
 import { createHashHistory } from 'history';
 import './Index.scss'
 

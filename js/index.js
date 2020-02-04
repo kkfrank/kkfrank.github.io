@@ -127,7 +127,7 @@ $(function(){
                             '<div class="timeline-panel">'+
                                 '<div class="timeline-heading">'+
                                     '<h2>'+ data[i].school +'</h2>'+
-                                    '<h3>Type :' + data[i].type +'</h3>'+
+                                    '<h3>Type: ' + data[i].type +'</h3>'+
                                     '<span class="date">'+data[i].year+'</span>'+
                                 '</div>'+
                                 '<div class="timeline-body">'+

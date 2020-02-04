@@ -1,5 +1,4 @@
 import connection from '../api/http'
-import { BASE_URL } from '../constants'
 import { LOGIN_SUCCESS} from '../action_type/login'
 import { showLoading, hideLoading, setErrorMsg } from "./loading_error";
 import { createHashHistory } from 'history';
@@ -16,10 +15,10 @@ export function doLogin(username, password){
                     type: LOGIN_SUCCESS,
                     user: res.data
                 })
-                // dispatch(hideLoading());
+                dispatch(hideLoading());
+                history.push('/');
                 // window.location.href='/'
                 //  window.location.href = `${BASE_URL}`
-                history.push('/');
             })
             .catch(err=>{
                 dispatch(setErrorMsg(err.message))

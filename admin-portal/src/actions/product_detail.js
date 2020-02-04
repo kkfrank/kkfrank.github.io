@@ -1,5 +1,4 @@
 import connection from '../api/http'
-import { BASE_URL } from '../constants'
 import { GET_PRODUCT_DETAIL_SUCCESS, SAVE_PRODUCT_DETAIL_SUCCESS, PRODUCT_DETAIL_CHANGE,CLEAR_PRODUCT_DETAIL } from '../action_type/product_detail'
 import { showLoading, hideLoading, setErrorMsg } from "./loading_error";
 import { createHashHistory } from 'history';

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Loading from '../../components/Loading/Loading.jsx'
 import Modal from '../../components/Modal/Index'
 import { doLogin } from '../../actions/login'
-import { clearErrorMsg } from '../../actions/loading_error'
+import { clearErrorMsg, hideLoading } from '../../actions/loading_error'
 import './Login.scss';
 
 @connect(state=>({
@@ -16,6 +16,9 @@ import './Login.scss';
     },
     clearErrorMsgFunc(){
         dispatch(clearErrorMsg())
+    },
+    hideLoadingFunc(){
+        dispatch(hideLoading())
     }
 }))
 export default class Login extends Component {
@@ -23,6 +26,7 @@ export default class Login extends Component {
         login: PropTypes.object,
         loadingError: PropTypes.object,
         doLoginFunc: PropTypes.func,
+        hideLoadingFunc: PropTypes.func
     }
 
     constructor(props){
@@ -45,6 +49,7 @@ export default class Login extends Component {
 
     componentDidMount(){
         // const {user} = this.props.login;
+        this.props.hideLoadingFunc()
         const user = JSON.parse(window.localStorage.getItem('current_user'));
         if(user){
             this.props.history.push('/');
@@ -111,6 +116,7 @@ export default class Login extends Component {
 
         return (
           <div className="container">
+              <div className='notice'>注意：线上存在缺陷，因为使用的跨域代理网站并不支持cookie，所以即使登录成功也不会保存cookie，导致下次call api的时候还是认为没有登录。欲查看完整效果，可下载到本地，自行配置反向代理。</div>
               <h1>后台管理系统</h1>
               {
                   errorMsg && (

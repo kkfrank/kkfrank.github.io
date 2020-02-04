@@ -86,6 +86,18 @@ module.exports = {
         new CleanWebpackPlugin('./build'),
         // 加署名
         new webpack.BannerPlugin("Copyright by frank"),
+
+        // 分离CSS和js
+        new ExtractTextPlugin('css/[name].[chunkhash:8].css'),
+        // 提供公共代码vendor
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendor',
+           // filename: 'js/[name].[chunkhash:8].js'
+        }),
+        /// 定义为生产环境，编译 React 时压缩到最小,  可在业务 js 代码中使用 process.env.NODE_ENV
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': '"production"'
+        }),
         // html 模板插件
         new HtmlWebpackPlugin({
             filename:'../index.html',
@@ -95,20 +107,5 @@ module.exports = {
                 collapseWhitespace: false
             }
         }),
-        // 分离CSS和js
-        new ExtractTextPlugin('css/[name].[chunkhash:8].css'),
-        // 提供公共代码vendor
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor',
-            filename: 'js/[name].[chunkhash:8].js'
-        }),
-        /// 定义为生产环境，编译 React 时压缩到最小
-        new webpack.DefinePlugin({
-            '$NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-        }),
-        // 可在业务 js 代码中使用 __DEV__ 判断是否是dev模式（dev模式下可以提示错误、测试报告等, production模式不提示）
-        new webpack.DefinePlugin({
-            __DEV__: JSON.stringify(JSON.parse((process.env.NODE_ENV == 'dev') || 'false'))
-        })
     ]
 }

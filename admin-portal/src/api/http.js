@@ -30,19 +30,27 @@ const request = (method = 'GET', url, params = {}, data = {}) => {
         });
     });
 };
+
+let isProd = false;
+if(typeof process !== 'undefined'){
+    isProd = process.env.NODE_ENV === 'production'
+}
+
 const corsUrl = 'https://cors-anywhere.herokuapp.com/'
 // const corsUrl = 'https://crossorigin.me/'
 const apiUrl = 'http://admintest.happymmall.com'
+
+
 const connection = {
     post(url, data, params){
-        if($NODE_ENV === 'production'){
+        if(isProd){
             url = corsUrl + apiUrl + url
             // url = apiUrl + url
         }
         return request('POST', url, params, data)
     },
     get(url, params = {}){
-        if($NODE_ENV === 'production'){
+        if(isProd){
             url = corsUrl + apiUrl + url
             // url = apiUrl + url
         }
