@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>小圆随着大圆转动</title>
+    <style>
+        .circle-box{
+            position: absolute;
+            left: 50%;
+            top: 200px;
+            transform: translate(-50%, 0);
+        }
+        .big-circle{
+            width: 100px;
+            height: 100px;
+            background: red;
+            border-radius: 50%;
+        }
+        .small-circle{
+            position: absolute;
+            left: 0;
+            top: 50%;
+            margin-left: -5px;
+            margin-top: -5px;
+            width: 10px;
+            height: 10px;
+            background: blue;
+            border-radius: 50%;
+            animation: autoCircle 2s infinite linear;
+            transform-origin: 55px 5px;
+        }
+        @keyframes autoCircle {
+            0%{ transform: rotate(0deg); }
+            100%{transform: rotate(360deg);}
+        }
+    </style>
+</head>
+<body>
+    <div class="circle-box">
+        <div class="big-circle"></div>
+        <div class="small-circle"></div>
+    </div>
+</body>
+</html>
