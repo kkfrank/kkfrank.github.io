@@ -112,7 +112,7 @@ a.mobile-menu-opener {
 }
 
 #sidebar .profile{
-    padding: 40px 0 10px;
+    margin: 40px 0 10px;
 }
 #sidebar .profile img{
     display: block;
@@ -125,7 +125,6 @@ a.mobile-menu-opener {
 #sidebar .profile div{
     padding: 10px 0;
     font-size: 18px;
-    color: #999;
     text-align: center;
 }
 #sidebar .nav-list  li a {
@@ -133,6 +132,63 @@ a.mobile-menu-opener {
     display: block;
     color: #999;
     text-decoration: none;
+}
+
+#sidebar .profile{
+    position: relative;
+    cursor: pointer;
+}
+#sidebar .profile img{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+.border{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top: 0;
+    left: 15px;
+    border-radius: 50%;
+    border: 8px solid #174aad;
+    border-left-color: #E07514;
+    border-top-color: #E07514;
+    transition: all 0.5s ease-in;
+}
+#sidebar .profile:hover .border{
+    transform: rotate(180deg);
+}
+#sidebar .mask{
+    position: absolute;
+    left: 15px;
+    top: 0;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+#sidebar .mask .info{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#sidebar .mask .info div{
+    transition: all 0.5s ease-in;
+    font-size: 16px;
+    white-space: nowrap;
+    padding: 0;
+    color: rgba(255,255,255,0);
+}
+#sidebar .mask .info h3{
+    transition: all 0.5s ease-in;
+    color: rgba(255,255,255,0);
+}
+#sidebar .profile:hover .mask {
+    background-color: rgba(0,0,0,0.24);
+}
+#sidebar .profile:hover .info h3,  #sidebar .profile:hover .info div {
+    color: rgba(255,255,255,1);
 }
 
 #main {
@@ -181,8 +237,6 @@ a.mobile-menu-opener {
 }
 .caption-info h2{
     color: #fff;
-    /*letter-spacing: 4px;*/
-    /*font-weight: 700;*/
 }
 .caption-info .skills{
     display: inline-block;
@@ -194,8 +248,6 @@ a.mobile-menu-opener {
 
 }
 .caption-info .skills span{
-    /*padding: 2px 4px;*/
-    /*padding-right: 4px;*/
     white-space: nowrap;
 }
 .social-link li {
