@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>History Router</title>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li><a href="" data-href="/">Home</a></li>
+        <li><a href="" data-href="/topic">Topic</a></li>
+        <li><a href="" data-href="/about">About</a></li>
+    </ul>
+    <div id="content"></div>
+</div>
+    <script>
+//        class HistoryRouter{
+//            constructor(){
+//                this.currentPath = '/';
+//                this.routes = {}
+//            }
+//            init(){
+//                //DOMContentLoaded事件用于刷新页面后
+//                window.addEventListener('DOMContentLoaded', this.updateView.bind(this, '/'))
+//                var that = this
+//                window.addEventListener('click', function (ev) {
+//                    if(ev.target.tagName.toLocaleLowerCase() === 'a' && ev.target.getAttribute('data-href')) {
+//                        ev.preventDefault()
+//                        var path = ev.target.getAttribute('data-href');
+//                        history.pushState({ path: path }, '', path)
+//                        that.updateView(path)
+//                    }
+//                })
+//                window.addEventListener('popstate', function (ev) {
+//                    if(ev.state){
+//                        var path = ev.state.path
+//                        that.updateView(path)
+//                    }else{
+//                        that.updateView('/')
+//                    }
+//                })
+//            }
+//            updateView(path){
+//                this.currentPath = path
+//                this.routes[this.currentPath] && this.routes[this.currentPath]()
+//            }
+//            route(path, callback){
+//                this.routes[path] = callback
+//            }
+//        }
+        function HistoryRouter(){
+            this.currentPath = '/';
+            this.routes = {}
+        }
+        HistoryRouter.prototype = {
+            init: function(){
+                window.addEventListener('DOMContentLoaded', this.updateView.bind(this, '/'))
+                var that = this
+                window.addEventListener('click', function (ev) {
+                    if(ev.target.tagName.toLocaleLowerCase() === 'a' && ev.target.getAttribute('data-href')) {
+                        ev.preventDefault()
+                        var path = ev.target.getAttribute('data-href');
+                        history.pushState({ path: path }, '', path)
+                        that.updateView(path)
+                    }
+                })
+                window.addEventListener('popstate', function (ev) {
+                    if(ev.state){
+                        var path = ev.state.path
+                        that.updateView(path)
+                    }else{
+                        that.updateView('/')
+                    }
+                })
+            },
+            updateView: function(path){
+                this.currentPath = path
+                this.routes[this.currentPath] && this.routes[this.currentPath]()
+            },
+            route: function(path, callback){
+                this.routes[path] = callback
+            }
+        }
+
+        var router = new HistoryRouter();
+        router.init();
+        router.route('/', function(){
+            document.getElementById('content').innerHTML = 'This is Home'
+        })
+        router.route('/topic', function(){
+            document.getElementById('content').innerHTML = 'This is Topic'
+        })
+        router.route('/about', function(){
+            document.getElementById('content').innerHTML = 'This is About'
+        })
+    </script>
+</body>
+</html>

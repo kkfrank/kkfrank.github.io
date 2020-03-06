@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hash Router</title>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li><a href="#/">Home</a></li>
+        <li><a href="#/topic">Topic</a></li>
+        <li><a href="#/about">About</a></li>
+    </ul>
+    <div id="content"></div>
+</div>
+    <script>
+        //class HashRouter{
+        //    constructor(){
+        //        this.currentPath = '/';
+        //        this.routes = {}
+        //    }
+        //    init(){
+        //        //DOMContentLoaded事件用于刷新页面后
+        //        window.addEventListener('DOMContentLoaded', this.updateView.bind(this))
+        //        window.addEventListener('hashchange', this.updateView.bind(this))
+        //    }
+        //    updateView(){
+        //        this.currentPath = location.hash.substring(1) || '/'
+        //        this.routes[this.currentPath] && this.routes[this.currentPath]()
+        //    }
+        //    route(path, callback){
+        //        this.routes[path] = callback
+        //    }
+        //}
+        function HashRouter(){
+            this.currentPath = '/';
+            this.routes = {}
+        }
+        HashRouter.prototype = {
+            init: function(){
+                //DOMContentLoaded事件用于刷新页面后
+                window.addEventListener('DOMContentLoaded', this.updateView.bind(this))
+                window.addEventListener('hashchange', this.updateView.bind(this))
+            },
+            updateView: function(){
+                this.currentPath = location.hash.substring(1) || '/'
+                this.routes[this.currentPath] && this.routes[this.currentPath]()
+            },
+            route: function(path, callback){
+                this.routes[path] = callback
+            }
+        }
+
+        var router = new HashRouter();
+        router.init();
+        router.route('/', function(){
+            document.getElementById('content').innerHTML = 'This is Home'
+        })
+        router.route('/topic', function(){
+            document.getElementById('content').innerHTML = 'This is Topic'
+        })
+        router.route('/about', function(){
+            document.getElementById('content').innerHTML = 'This is About'
+        })
+    </script>
+</body>
+</html>
