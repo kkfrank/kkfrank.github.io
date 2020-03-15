@@ -74,7 +74,7 @@ $(function(){
             }
             $nowEle.addClass('hide');
             $nextPrev.removeClass('hide');
-            var width = $nextPrev.width();
+            var width = $nextPrev.width()+8;
             $('.skills').animate({width:width});
             setTimeout(function(){
                 animateSkill()

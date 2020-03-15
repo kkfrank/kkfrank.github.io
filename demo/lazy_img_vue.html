@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>图片懒加载 by vue</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .image-box{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .image-box img{
+            width: 33.33%;
+            padding: 10px;
+        }
+        h1{
+            text-align: center;
+            font-size: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>图片懒加载</h1>
+        <div class="image-box">
+            <lazy-img :src="item" class-name="test" v-for="item in imageList" key=""/>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        function isInViewport(el) {
+            const inBelow = el.getBoundingClientRect().top > window.innerHeight   // 元素在屏幕下方的情况
+            const inAbove = el.getBoundingClientRect().bottom < 0           // 元素在屏幕上方的情况
+            const visible = getComputedStyle(el).display !== "none"           // 元素display样式为none
+            return !inBelow && !inAbove  && visible
+        }
+
+        var lazyLoad = (function(){
+            var isActive = false;// 节流，每200s触发一次
+            return function () {
+                if(isActive){ return }
+                isActive = true
+                setTimeout(function(){
+                    //转换成数组
+                    var lazyImgs =  [].slice.call(document.querySelectorAll('img.lazy'));
+                    lazyImgs.forEach(function (img) {
+                        if(isInViewport(img)){
+                            img.src = img.getAttribute('data-src');
+                            img.classList.remove("lazy"); //移除已经加载好的
+                        }
+                    })
+                    isActive = false
+                }, 200)
+            }
+        })();
+
+        Vue.component('lazy-img', {
+            props: {
+                src: {
+                    type: String,
+                    default: ''
+                },
+                defaultSrc: {
+                    type: String,
+                    default: '../image/placeholder.webp'
+                },
+                className: {
+                    type: String,
+                    default: ''
+                },
+                alt: {
+                    type: String,
+                    default: ''
+                }
+            },
+            template: '<img :src="defaultSrc" :data-src="src" :class="[\'lazy\',className]" :alt="alt">'
+        })
+
+       var vm = new Vue({
+            el:'#app',
+            data:{
+                id: '1',
+                imageList: []
+            },
+            created: function(){
+                this.imageList = this.getImages()
+            },
+            mounted: function(){
+                window.addEventListener('scroll', lazyLoad);
+                window.addEventListener('resize', lazyLoad);
+                window.addEventListener('orientationchange', lazyLoad)//屏幕旋转事件
+            },
+            methods: {
+                getImages: function(){
+                    var imageList = []
+                    for(var i=1; i< 400; i++){
+                        var image = 'https://i.picsum.photos/id/'+i+'/300/300.jpg'
+                        imageList.push(image)
+                    }
+                    return imageList
+                }
+            }
+        })
+
+
+    </script>
+</body>
+</html>
